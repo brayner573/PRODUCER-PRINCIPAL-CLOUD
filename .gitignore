@@ -1,44 +1,38 @@
-# === Terraform ===
+# Evitar subir archivos de configuración local y temporales
+*.log
+*.bak
+*.tmp
+*.swp
+*.DS_Store
+*.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+.venv/
+.env
+
+# Terraform
 .terraform/
 *.tfstate
 *.tfstate.backup
-crash.log
-*.tfvars
+.terraform.lock.hcl
 override.tf
 override.tf.json
-*_override.tf
-*_override.tf.json
-.terraform.lock.hcl
-
-# === Python ===
-__pycache__/
-*.py[cod]
-*.egg
-*.egg-info/
-dist/
-build/
-.env
-.venv/
-venv/
-pip-log.txt
-*.log
-
-# === OS files ===
-.DS_Store
-Thumbs.db
-
-# === Git ===
-*.swp
-*.swo
-*.bak
-
-# === AWS credentials (solo si los tienes localmente, no en GitHub Secrets) ===
-*.pem
-*.key
-
-# === ZIPs y binarios ===
+*.tfvars
 *.zip
-*.exe
 
-# === VSCode ===
-.vscode/
+# Binarios y ejecutables grandes
+*.exe
+*.dll
+*.so
+
+# Archivos específicos de tu proyecto
+terraform/function.zip
+DataCovid.csv
+
+# GitHub Actions
+# No ignoramos .github/workflows/
