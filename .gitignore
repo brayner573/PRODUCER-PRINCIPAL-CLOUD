@@ -1,0 +1,44 @@
+# === Terraform ===
+.terraform/
+*.tfstate
+*.tfstate.backup
+crash.log
+*.tfvars
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraform.lock.hcl
+
+# === Python ===
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+dist/
+build/
+.env
+.venv/
+venv/
+pip-log.txt
+*.log
+
+# === OS files ===
+.DS_Store
+Thumbs.db
+
+# === Git ===
+*.swp
+*.swo
+*.bak
+
+# === AWS credentials (solo si los tienes localmente, no en GitHub Secrets) ===
+*.pem
+*.key
+
+# === ZIPs y binarios ===
+*.zip
+*.exe
+
+# === VSCode ===
+.vscode/
