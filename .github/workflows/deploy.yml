@@ -1,0 +1,39 @@
+name: Deploy Cloud
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v3
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Instalar Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.12.2
+
+
+      - name: Inicializar Terraform
+        working-directory: terraform
+        run: terraform init
+
+      - name: Aplicar Terraform
+        working-directory: terraform
+        run: terraform apply -auto-approve -var-file="terraform.tfvars"
+
+      - name: Instalar dependencias de Python
+        run: pip install boto3
+
+      - name: Ejecutar subir CSV a S3
+        run: python s3Producer.py
