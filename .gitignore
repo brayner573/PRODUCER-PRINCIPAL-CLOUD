@@ -1,31 +1,6 @@
-# Archivos de Python
-__pycache__/
-*.py[cod]
-*.egg
-*.egg-info/
-dist/
-build/
-
-# Entornos virtuales
-.venv/
-env/
-venv/
-
-# Archivos de salida
-*.log
-*.out
-
-# Archivos de configuración local
-terraform.tfvars
-
-# Archivos de estado y lock de Terraform
+*.tfvars
 *.tfstate
 *.tfstate.backup
-.terraform/
-
-
-terraform/.terraform.lock.hcl
+.terraform/    
 terraform/function.zip
-
-# Terraform provider binaries
-terraform/.terraform/
+s3Producer.py

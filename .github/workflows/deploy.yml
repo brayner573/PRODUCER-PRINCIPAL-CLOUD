@@ -41,7 +41,7 @@ jobs:
           TF_VAR_aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           TF_VAR_aws_region: "us-east-1"
           TF_VAR_bucket_name: "producer-bucket03-cloud"
-          TF_VAR_lambda_function_name: "producerLambda03prueba"
+          TF_VAR_lambda_function_name: "producerLambda03"
         run: terraform apply -auto-approve
 
       - name: Instalar dependencias de Python
