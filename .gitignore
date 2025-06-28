@@ -1,34 +1,31 @@
-# Evitar subir archivos de configuración local y temporales
-*.log
-*.bak
-*.tmp
-*.swp
-*.DS_Store
-*.idea/
-.vscode/
-
-# Python
+# Archivos de Python
 __pycache__/
 *.py[cod]
-*.pyo
+*.egg
 *.egg-info/
-.venv/
-.env
+dist/
+build/
 
-# Terraform
-.terraform/
+# Entornos virtuales
+.venv/
+env/
+venv/
+
+# Archivos de salida
+*.log
+*.out
+
+# Archivos de configuración local
+terraform.tfvars
+
+# Archivos de estado y lock de Terraform
 *.tfstate
 *.tfstate.backup
-.terraform.lock.hcl
-override.tf
-override.tf.json
-*.zip
+.terraform/
 
-# Binarios y ejecutables grandes
-*.exe
-*.dll
-*.so
 
-# Archivos específicos de tu proyecto
+terraform/.terraform.lock.hcl
 terraform/function.zip
 
+# Terraform provider binaries
+terraform/.terraform/
