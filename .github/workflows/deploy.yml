@@ -21,24 +21,26 @@ jobs:
       - name: Instalar Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'  # Versión compatible con Lambda
+          python-version: '3.12'
 
       - name: Instalar Terraform
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.12.2
 
-      - name: Eliminar terraform-bin (si aparece por GitHub Actions)
-        run: rm -f $(find /home/runner/work -name terraform-bin || true)
-
-      - name: Verificar binario activo de Terraform
+      - name: Mostrar binario de Terraform correcto
         run: which terraform
 
-      - name: Inicializar Terraform
+      - name: Exportar PATH limpio y reforzar binario correcto
+        run: |
+          echo "PATH=$(dirname $(which terraform)):$PATH" >> $GITHUB_ENV
+          echo "USING=$(which terraform)" && $USING version
+
+      - name: Inicializar Terraform (binario oficial)
         working-directory: terraform
         run: terraform init
 
-      - name: Aplicar Terraform (usando binario oficial)
+      - name: Aplicar Terraform
         working-directory: terraform
         run: |
           terraform apply -auto-approve -input=false -no-color \
