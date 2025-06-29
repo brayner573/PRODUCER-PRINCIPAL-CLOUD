@@ -26,19 +26,22 @@ jobs:
       - name: Instalar Terraform
         uses: hashicorp/setup-terraform@v2
         with:
-          terraform_version: 1.12.2
+          terraform_version: 1.5.7  # Usa versión estable moderna
 
-      - name: Mostrar binario oficial de Terraform
-        run: which terraform
+      - name: Verificar binario de Terraform
+        run: |
+          echo "Binario activo:"
+          which terraform
+          terraform -version
 
       - name: Inicializar Terraform
         working-directory: terraform
-        run: /usr/local/bin/terraform init
+        run: terraform init
 
-      - name: Aplicar Terraform (binario forzado)
+      - name: Aplicar Terraform
         working-directory: terraform
         run: |
-          /usr/local/bin/terraform apply -auto-approve -input=false -no-color \
+          terraform apply -auto-approve -input=false -no-color \
             -var="aws_region=us-east-1" \
             -var="bucket_name=producer-bucket03-cloud" \
             -var="lambda_function_name=producerLambda03"
