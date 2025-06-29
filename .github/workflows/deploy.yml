@@ -28,22 +28,17 @@ jobs:
         with:
           terraform_version: 1.12.2
 
-      - name: Mostrar binario de Terraform correcto
+      - name: Mostrar binario oficial de Terraform
         run: which terraform
 
-      - name: Exportar PATH limpio y verificar binario oficial
-        run: |
-          echo "PATH=$(dirname $(which terraform)):$PATH" >> $GITHUB_ENV
-          terraform -version
-
-      - name: Inicializar Terraform (binario oficial)
+      - name: Inicializar Terraform
         working-directory: terraform
-        run: terraform init
+        run: /usr/local/bin/terraform init
 
-      - name: Aplicar Terraform
+      - name: Aplicar Terraform (binario forzado)
         working-directory: terraform
         run: |
-          terraform apply -auto-approve -input=false -no-color \
+          /usr/local/bin/terraform apply -auto-approve -input=false -no-color \
             -var="aws_region=us-east-1" \
             -var="bucket_name=producer-bucket03-cloud" \
             -var="lambda_function_name=producerLambda03"
