@@ -23,16 +23,11 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Instalar Terraform
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: 1.5.7  # ✅ usa versión moderna y estable
-
-      - name: Eliminar binario terraform-bin que interfiere
+      - name: Instalar Terraform manualmente (evita terraform-bin corrupto)
         run: |
-          find /home/runner -name terraform-bin -exec rm -f {} \;
-          echo "Binario activo:"
-          which terraform
+          curl -s -o terraform.zip https://releases.hashicorp.com/terraform/1.5.7/terraform_1.5.7_linux_amd64.zip
+          unzip terraform.zip
+          sudo mv terraform /usr/local/bin/
           terraform -version
 
       - name: Inicializar Terraform
