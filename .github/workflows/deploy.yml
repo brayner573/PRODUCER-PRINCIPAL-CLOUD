@@ -31,10 +31,10 @@ jobs:
       - name: Mostrar binario de Terraform correcto
         run: which terraform
 
-      - name: Exportar PATH limpio y reforzar binario correcto
+      - name: Exportar PATH limpio y verificar binario oficial
         run: |
           echo "PATH=$(dirname $(which terraform)):$PATH" >> $GITHUB_ENV
-          echo "USING=$(which terraform)" && $USING version
+          terraform -version
 
       - name: Inicializar Terraform (binario oficial)
         working-directory: terraform
