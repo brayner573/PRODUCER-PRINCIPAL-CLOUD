@@ -26,10 +26,11 @@ jobs:
       - name: Instalar Terraform
         uses: hashicorp/setup-terraform@v2
         with:
-          terraform_version: 1.5.7  # Usa versión estable moderna
+          terraform_version: 1.5.7  # ✅ usa versión moderna y estable
 
-      - name: Verificar binario de Terraform
+      - name: Eliminar binario terraform-bin que interfiere
         run: |
+          find /home/runner -name terraform-bin -exec rm -f {} \;
           echo "Binario activo:"
           which terraform
           terraform -version
